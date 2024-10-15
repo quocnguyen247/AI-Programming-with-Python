@@ -39,6 +39,8 @@ from print_results import print_results
 # Main program function defined below
 def main():
     start_time = time()
+
+    sleep(60)
     
     in_arg = get_input_args()
 
