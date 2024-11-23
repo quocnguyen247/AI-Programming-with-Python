@@ -175,7 +175,7 @@ for e in range(epochs):
             print("Epoch: {}/{}.. ".format(e+1, epochs),
                   "Training Loss: {:.3f}.. ".format(running_loss/print_every),
                   "Valid Loss: {:.3f}.. ".format(valid_loss/len(validloader)),
-                  "Valid Accuracy: {:.3f}".format(accuracy/len(validloader)))
+                  "Valid Accuracy: {:.3f}".format(accuracy/len(validloader)*100))
             running_loss = 0
             model.train()
 # saving trained Model

@@ -14,27 +14,26 @@ import json
 
 # define Mandatory and Optional Arguments for the script
 ap = argparse.ArgumentParser(description='Predict.py')
-ap.add_argument('input_img', help = 'Provide path to image. Mandatory argument', default='./flowers/test/1/image_06743.jpg', nargs='*', action="store", type = str)
+ap.add_argument('input_img', help = 'Provide path to image. Mandatory argument', nargs='*', action="store", type = str)
 ap.add_argument('checkpoint', help = 'Provide path to checkpoint. This is a mandatory argument', default='./checkpoint.pth', nargs='*', action="store",type = str)
 ap.add_argument('--top_k', help = 'Mapping of categories to real names. JSON file name to be provided. Optional', help = 'Top K most likely classes. Optional', default=5, dest="top_k", action="store", type=int)
 ap.add_argument('--category_names', dest="category_names", action="store", default='cat_to_name.json', type=str)
 ap.add_argument('--gpu', default="gpu", action="store", dest="gpu_device", help='Use gpu or cpu for inference', type=str)
 
 # a function that loads a checkpoint and rebuilds the model, input is a checkpoint path and output is a model
+
 def load_checkpoint(path):
     checkpoint = torch.load(path)
     if checkpoint['arch'] == 'allexnet':
         model = models.alexnet(pretrained=True)
     elif checkpoint['arch'] == 'vgg16':
         model = models.vgg16(pretrained=True)
-    elif checkpoint['arch'] == 'densenet121':
-        model = models.densenet121(pretrained=True)
     else:
-        print("Architecture not recognized. Only 'alexnet', 'vgg16', and 'densenet121' are supported.")
-    model = models.vgg16(pretrained=True)
+        print("Architecture not recognized. Only 'alexnet', 'vgg16' are supported.")
     model.classifier = checkpoint['classifier']
     model.load_state_dict(checkpoint['state_dict'])
     model.class_to_idx = checkpoint['class_to_idx']
+    
     for param in model.parameters():
         param.requires_grad = False
     return model
