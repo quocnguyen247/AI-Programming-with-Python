@@ -47,16 +47,17 @@ def process_image(image):
     pil_image = Image.open(image)
     width, height = pil_image.size
     if width > height:
-        pil_image.thumbnail((50000, 256), Image.ANTIALIAS)
+        pil_image.thumbnail((50000, 256), Image.LANCZOS)
     else:
-        pil_image.thumbnail((256, 50000), Image.ANTIALIAS)
+        pil_image.thumbnail((256, 50000), Image.LANCZOS)
 
     # Crop out the center 224x224 portion of the image
-    left_margin = (pil_image.width-224)/2
-    bottom_margin = (pil_image.height-224)/2
-    right_margin = left_margin + 224
-    top_margin = bottom_margin + 224
-    pil_image = pil_image.crop((left_margin, bottom_margin, right_margin, top_margin))
+    width, height = pil_image.size
+    left = (width - 224)/2 
+    top = (height - 224)/2
+    right = left + 224 
+    bottom = top + 224
+    pil_image = pil_image.crop((left, top, right, bottom))
 
     # Normalize the image
     np_image = np.array(pil_image)/255
