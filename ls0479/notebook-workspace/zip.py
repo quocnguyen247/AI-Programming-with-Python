@@ -22,5 +22,5 @@ def zip_folder_recursively(folder_path, output_zip):
 
 # Example usage
 folder_path = 'Cat_Dog_data'  # Replace with the folder path you want to zip
-output_zip = 'recursive_folder.zip'  # Name of the resulting zip file
+output_zip = 'aipnd-project-part2.zip'  # Name of the resulting zip file
 zip_folder_recursively(folder_path, output_zip)
