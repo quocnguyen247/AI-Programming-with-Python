@@ -21,6 +21,6 @@ def zip_folder_recursively(folder_path, output_zip):
     print(f"Folder {folder_path} and all subfolders zipped into {output_zip}")
 
 # Example usage
-folder_path = 'Cat_Dog_data'  # Replace with the folder path you want to zip
-output_zip = 'recursive_folder.zip'  # Name of the resulting zip file
+folder_path = 'image-classifier-part-2-workspace'  # Replace with the folder path you want to zip
+output_zip = 'image-classifier-part-2-workspace.zip'  # Name of the resulting zip file
 zip_folder_recursively(folder_path, output_zip)
